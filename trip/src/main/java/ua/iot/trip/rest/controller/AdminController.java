@@ -5,12 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ua.iot.trip.business.AdminService;
 import ua.iot.trip.rest.model.Admin;
+import ua.iot.trip.rest.model.Destination;
 
 
 import java.util.List;
 import java.util.Map;
 
-@Controller
+@RestController
 public class AdminController {
 
     @Autowired

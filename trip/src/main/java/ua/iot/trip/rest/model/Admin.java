@@ -1,9 +1,6 @@
 package ua.iot.trip.rest.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 //@Table(name="Admin")
@@ -13,6 +10,8 @@ public class Admin {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer admin_id;
+
+    @Column
     private String username;
 
     public Admin() {
@@ -37,4 +36,5 @@ public class Admin {
     public void setUsername(String username) {
         this.username = username;
     }
+
 }
