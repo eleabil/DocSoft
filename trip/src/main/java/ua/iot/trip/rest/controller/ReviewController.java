@@ -46,4 +46,16 @@ public class ReviewController {
         reviewService.deleteReviewById(id);
         return "The review with id: " + id + " was successfully deleted!";
     }
+
+    @DeleteMapping(path = "/delete/all")
+    public String deleteAll(){
+        reviewService.deleteAllReviews();
+        return "All records were successfully deleted!";
+    }
+
+    @RequestMapping(path = "/csvinput")
+    public List<Review> inputDataToDb(){
+        reviewService.saveDataFromCsv();
+        return reviewService.getAllReviews();
+    }
 }

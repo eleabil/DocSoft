@@ -16,4 +16,8 @@ public interface ReviewRepo extends JpaRepository<Review, Integer> {
     @Transactional
     @Modifying
     void deleteByReviewId(Integer id);
+
+    @Transactional
+    @Modifying
+    void deleteAll();
 }
