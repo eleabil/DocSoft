@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 public class ReviewGenerator {
+
     Random random = new Random();
     static final File USERNAMES = new File("src/Usernames.csv");
     static final File LISTING_NAMES = new File("src/ListingNames.csv");

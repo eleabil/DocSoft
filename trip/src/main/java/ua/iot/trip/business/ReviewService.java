@@ -2,7 +2,6 @@ package ua.iot.trip.business;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ua.iot.trip.ReviewGenerator;
 import ua.iot.trip.dataaccess.ReviewRepo;
 import ua.iot.trip.rest.model.Review;
 
@@ -44,8 +43,6 @@ public class ReviewService {
 
     public void saveDataFromCsv(){
         String line ="";
-        ReviewGenerator reviewGenerator = new ReviewGenerator();
-        reviewGenerator.generateReview();
         try {
             BufferedReader br = new BufferedReader(new FileReader("Review.csv"));
             while ((line = br.readLine())!=null){
