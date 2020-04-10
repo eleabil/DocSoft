@@ -1,0 +1,42 @@
+<html>
+<style>
+
+th {
+  text-align: left;
+}
+
+</style>
+<body>
+<div>
+    <!--    <form method="post" action="filter">
+            <input type="text" name="filterByListingName" placeholder="Find review"/>
+            <button type="submit">Find</button>
+        </form>-->
+</div>
+<div><h2>The list of reviews:</h2></div>
+
+<table style="width:60%">
+    <tr>
+        <th>ID</th>
+        <th>Listing Name</th>
+        <th>Title</th>
+        <th>Text</th>
+        <th>Date</th>
+        <th>Rate</th>
+        <th>Username</th>
+    </tr>
+    {{#reviews}}
+        <tr>
+            <td>{{reviewId}}</td>
+            <td>{{listingName}}</td>
+            <td>{{reviewTitle}}</td>
+            <td>{{reviewText}}</td>
+            <td>{{dateCreated}}</td>
+            <td>{{rateStars}}</td>
+            <td>{{username}}</td>
+
+        </tr>
+    {{/reviews}}
+</table>
+</body>
+</html>

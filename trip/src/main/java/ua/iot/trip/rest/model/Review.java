@@ -53,6 +53,12 @@ public class Review {
         this.username = username;
     }
 
+    public Review(String reviewTitle, String reviewText, int rateStars) {
+        this.reviewTitle = reviewTitle;
+        this.reviewText = reviewText;
+        this.rateStars = rateStars;
+    }
+
     public Integer getReviewId() {
         return reviewId;
     }

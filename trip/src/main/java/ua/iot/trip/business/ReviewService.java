@@ -17,38 +17,42 @@ public class ReviewService {
     @Autowired
     private ReviewRepo reviewRepo;
 
-    public List<Review> getAllReviews(){
+    public List<Review> getAllReviews() {
         return reviewRepo.findAll();
     }
 
-    public Review createReview(Review review){
+    public Review createReview(Review review) {
         return reviewRepo.save(review);
     }
 
-    public Review getReviewById(Integer id){
+    public Review getReviewById(Integer id) {
         return reviewRepo.findReviewByReviewId(id);
     }
 
-    public List<Review> getReviewByRate(int rateStars){
+    public List<Review> getReviewByRate(int rateStars) {
         return reviewRepo.findByRateStars(rateStars);
+    }
+
+    public List<Review> getReviewByListingName(String listingName) {
+        return reviewRepo.findByListingName(listingName);
     }
 
     public void deleteReviewById(Integer id) {
         reviewRepo.deleteByReviewId(id);
     }
 
-    public void deleteAllReviews(){
+    public void deleteAllReviews() {
         reviewRepo.deleteAll();
     }
 
-    public void saveDataFromCsv(){
-        String line ="";
+    public void saveDataFromCsv() {
+        String line = "";
         try {
             BufferedReader br = new BufferedReader(new FileReader("Review.csv"));
-            while ((line = br.readLine())!=null){
+            while ((line = br.readLine()) != null) {
                 String[] data = line.split(" ");
                 Review review = new Review();
-            //    review.setReviewId(Integer.parseInt(data[0]));
+                //    review.setReviewId(Integer.parseInt(data[0]));
                 review.setListingName(data[0]);
                 review.setReviewTitle(data[1]);
                 review.setReviewText(data[2]);
@@ -62,5 +66,13 @@ public class ReviewService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Review updateReview(String reviewTitle, String reviewText, int rateStars, Integer id) {
+        Review review = reviewRepo.findReviewByReviewId(id);
+        review.setRateStars(rateStars);
+        review.setReviewText(reviewText);
+        review.setReviewTitle(reviewTitle);
+        return reviewRepo.save(review);
     }
 }

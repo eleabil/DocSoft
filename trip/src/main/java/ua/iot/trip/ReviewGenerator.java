@@ -15,7 +15,6 @@ public class ReviewGenerator {
     static final File LISTING_NAMES = new File("src/ListingNames.csv");
     List<String> usernames;
     List<String> listingNames;
-    int id = 1;
 
     {
         try {
@@ -26,63 +25,55 @@ public class ReviewGenerator {
         }
     }
 
-    public String generateUsername(){
+    public String generateUsername() {
         return usernames.get(random.nextInt(usernames.size()));
     }
 
-    public String generateListingName(){
+    public String generateListingName() {
         return listingNames.get(random.nextInt(listingNames.size()));
     }
 
-    public String generateDateCreated(){
+    public String generateDateCreated() {
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat formatter = new SimpleDateFormat(pattern);
-        String date = formatter.format(new Date());
-        return date;
+        return formatter.format(new Date());
     }
 
-    public int generateRateStars(){
+    public int generateRateStars() {
         return random.nextInt(6);
     }
 
-    public String generateReviewText(){
-        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    public String generateReviewText() {
+        String randomString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "abcdefghijklmnopqrstuvxyz";
         StringBuilder sb = new StringBuilder(10);
         for (int i = 0; i < 10; i++) {
             int index
-                    = (int)(AlphaNumericString.length()
+                    = (int) (randomString.length()
                     * Math.random());
-            sb.append(AlphaNumericString
+            sb.append(randomString
                     .charAt(index));
         }
         return sb.toString();
     }
 
-    public String generateReviewTitle(){
-        String[] arr={"Excellent!", "Good", "Okay", "Nice", "Awesome", "Bad", "Awful", "Disgusting"};
-        Random r=new Random();
-        int randomTitle = r.nextInt(arr.length);
-        String title = arr[randomTitle];
-        return title;
+    public String generateReviewTitle() {
+        String[] titlesArray = {"Excellent!", "Good", "Okay", "Nice", "Awesome", "Bad", "Awful", "Disgusting"};
+        int randomTitle = random.nextInt(titlesArray.length);
+        return titlesArray[randomTitle];
     }
 
-    public void generateReview(){
+    public void generateReview() {
         try {
-            PrintWriter writer = new PrintWriter("Review.csv", "UTF-8");
-            for(int i = 0;i<=1000; i++){
-                writer.println(generateListingName() + " " +  generateReviewTitle() + " " +
+            PrintWriter printWriter = new PrintWriter("Review.csv", "UTF-8");
+            for (int i = 0; i <= 1000; i++) {
+                printWriter.println(generateListingName() + " " + generateReviewTitle() + " " +
                         generateReviewText() + " " + generateDateCreated() + " " +
                         generateRateStars() + " " + generateUsername());
             }
-            writer.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+            printWriter.close();
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
     }
-
 }
