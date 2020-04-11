@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import ua.iot.trip.business.ReviewService;
 import ua.iot.trip.rest.model.Review;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -30,8 +32,10 @@ public class ReviewController {
 
     @PostMapping
     public Review createReview(String listingName, String reviewTitle,
-                               String reviewText, String dateCreated,
-                               int rateStars, String username) {
+                               String reviewText, int rateStars, String username) {
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+        String dateCreated = formatter.format(new Date());
         Review review = new Review(listingName, reviewTitle,
                 reviewText, dateCreated, rateStars, username);
         reviewService.createReview(review);
