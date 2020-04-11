@@ -1,0 +1,37 @@
+<html>
+<div>
+    <form method="post" action="update">
+        <input type="number" name="id" placeholder="Enter id"/>
+        <input type="text" name="title" placeholder="Enter new title"/>
+        <input type="text" name="text" placeholder="Enter new text"/>
+        <input type="number" name="rate" placeholder="Enter new rate"/>
+        <button type="submit">Update</button>
+    </form>
+</div>
+<div>
+    <table style="width:60%">
+        <tr>
+            <th>ID</th>
+            <th>Listing Name</th>
+            <th>Title</th>
+            <th>Text</th>
+            <th>Date</th>
+            <th>Rate</th>
+            <th>Username</th>
+        </tr>
+        {{#updReview}}
+            <tr>
+                <td>{{reviewId}}</td>
+                <td>{{listingName}}</td>
+                <td>{{reviewTitle}}</td>
+                <td>{{reviewText}}</td>
+                <td>{{dateCreated}}</td>
+                <td>{{rateStars}}</td>
+                <td>{{username}}</td>
+
+            </tr>
+        {{/updReview}}
+    </table>
+</div>
+
+</html>

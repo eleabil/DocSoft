@@ -1,52 +1,74 @@
 <html>
 <style>
-
 th {
   text-align: left;
 }
 
+.inl {
+    display: inline;
+}
 </style>
 <body>
 <div>
-
+    <h3>Add a review!</h3>
     <form method="post">
         <input type="text" name="listingName" placeholder="Enter listing name"/>
         <input type="text" name="reviewTitle" placeholder="Enter title"/>
         <input type="text" name="reviewText" placeholder="Enter text"/>
-<!--        <input type="text" name="dateCreated" placeholder="Enter username"/>-->
         <input type="number" name="rateStars" placeholder="Enter rate"/>
         <input type="text" name="username" placeholder="Enter username"/>
         <button type="submit">Add</button>
     </form>
-    <!--    <form method="post" action="filter">
-            <input type="text" name="filterByListingName" placeholder="Find review"/>
-            <button type="submit">Find</button>
-        </form>-->
 </div>
-<div><h2>The list of reviews:</h2></div>
+<div>
+        <b class="inl">You can </b>
+        <form method="get" action="/review/try/put" class="inl">
+            <button type="submit">Update your review</button>
+        </form>
+        <b class="inl"> or just </b>
+        <form method="get" action="/review/try/delete" class="inl">
+            <button type="submit">Delete your review</button>
+        </form>
+</div>
+<div>
+    <h3>Filters:</h3>
+    <form method="post" action="/review/try/filterById">
+        <input type="number" name="filterId" placeholder="Find by Id"/>
+        <button type="submit">Find</button>
+    </form>
+    <form method="post" action="/review/try/filterByRate">
+        <input type="number" name="filterRateStars" placeholder="Find by Rate"/>
+        <button type="submit">Find</button>
+    </form>
+    <form method="post" action="/review/try/filterByListingName">
+        <input type="text" name="filterListingName" placeholder="Find by Listing"/>
+        <button type="submit">Find</button>
+    </form>
 
-<table style="width:60%">
-    <tr>
-        <th>ID</th>
-        <th>Listing Name</th>
-        <th>Title</th>
-        <th>Text</th>
-        <th>Date</th>
-        <th>Rate</th>
-        <th>Username</th>
-    </tr>
-    {{#reviews}}
+    <h2>The list of reviews:</h2>
+    <table style="width:60%">
         <tr>
-            <td>{{reviewId}}</td>
-            <td>{{listingName}}</td>
-            <td>{{reviewTitle}}</td>
-            <td>{{reviewText}}</td>
-            <td>{{dateCreated}}</td>
-            <td>{{rateStars}}</td>
-            <td>{{username}}</td>
-
+            <th>ID</th>
+            <th>Listing Name</th>
+            <th>Title</th>
+            <th>Text</th>
+            <th>Date</th>
+            <th>Rate</th>
+            <th>Username</th>
         </tr>
-    {{/reviews}}
-</table>
+        {{#reviews}}
+            <tr>
+                <td>{{reviewId}}</td>
+                <td>{{listingName}}</td>
+                <td>{{reviewTitle}}</td>
+                <td>{{reviewText}}</td>
+                <td>{{dateCreated}}</td>
+                <td>{{rateStars}}</td>
+                <td>{{username}}</td>
+
+            </tr>
+        {{/reviews}}
+    </table>
+</div>
 </body>
 </html>
